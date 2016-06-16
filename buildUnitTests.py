@@ -92,6 +92,13 @@ class TestDefaultController(unittest.TestCase):
             returnString = returnString + "        self.client.get('" + methodName + '/' + entryPoint + "')\n"
             returnString = returnString + "        self.assertIn('xxx', self.client.text)\n\n"
 
+        returnString = returnString + '''
+if __name__ == '__main__':
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestDefaultController)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+
+'''
+
         return returnString
     
 ### Main class
