@@ -57,6 +57,7 @@ class Controller(object):
         returnString = '''
 import sys 
 sys.path.append(\'WEB2PYDIR\')
+sys.path.append(\'./\')
 from gluon.contrib.webclient import WebClient
 from gluon.storage import Storage
 
@@ -95,7 +96,11 @@ class TestDefaultController(unittest.TestCase):
         returnString = returnString + '''
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestDefaultController)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    if result.wasSuccessful():
+        sys.exit(0)
+    else:
+        sys.exit(1)
 
 '''
 
